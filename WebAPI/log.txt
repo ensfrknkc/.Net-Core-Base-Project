@@ -1,0 +1,26 @@
+2022-27-24 ENES 1 Application started. Press Ctrl+C to shut down.  2022-27-24 ENES 1 Hosting environment: "Development"  2022-27-24 ENES 1 Content root path: "C:\Users\90533\Desktop\Visual Studio\Project\WebAPI"  2022-27-24 ENES 4 Request starting HTTP/1.1 GET http://localhost:13483/weatherforecast    2022-27-24 ENES 4 Executing endpoint '"WebAPI.Controllers.WeatherForecastController.Get (WebAPI)"'  2022-27-24 ENES 4 Route matched with "{action = \"Get\", controller = \"WeatherForecast\"}". Executing controller action with signature "System.Collections.Generic.IEnumerable`1[WebAPI.WeatherForecast] Get()" on controller "WebAPI.Controllers.WeatherForecastController" ("WebAPI").  2022-27-24 ENES 4 Executing ObjectResult, writing value of type '"WebAPI.WeatherForecast[]"'.  2022-27-24 ENES 4 Executed action "WebAPI.Controllers.WeatherForecastController.Get (WebAPI)" in 33.8632ms  2022-27-24 ENES 4 Executed endpoint '"WebAPI.Controllers.WeatherForecastController.Get (WebAPI)"'  2022-27-24 ENES 4 Request finished in 122.8961ms 200 application/json; charset=utf-8  2022-27-24 ENES 10 Request starting HTTP/1.1 POST http://localhost:13483/api/products/add application/json 136  2022-27-24 ENES 10 Executing endpoint '"WebAPI.Controllers.ProductsController.Post (WebAPI)"'  2022-27-24 ENES 10 Route matched with "{action = \"Post\", controller = \"Products\"}". Executing controller action with signature "Microsoft.AspNetCore.Mvc.IActionResult Post(Entities.Concrete.Product)" on controller "WebAPI.Controllers.ProductsController" ("WebAPI").  2022-27-24 ENES 10 Executed action "WebAPI.Controllers.ProductsController.Post (WebAPI)" in 4119.3578ms  2022-27-24 ENES 10 Executed endpoint '"WebAPI.Controllers.ProductsController.Post (WebAPI)"'  2022-27-24 ENES 10 An unhandled exception has occurred while executing the request. FluentValidation.ValidationException: Validation failed: 
+ -- UnitPrice: 'Unit Price' değeri '10' değerinden büyük veya eşit olmalı. Severity: Error
+ -- ProductName: Ürünler A harfi ile başlamalı Severity: Error
+   at Core.CrossCuttingConcerns.Validation.ValidationTool.Validate(IValidator validator, Object entity) in C:\Users\90533\Desktop\Visual Studio\Project\Core\CrossCuttingConcerns\Validation\ValidationTool.cs:line 18
+   at Core.Aspects.Autofac.Validation.ValidationAspect.OnBefore(IInvocation invocation) in C:\Users\90533\Desktop\Visual Studio\Project\Core\Aspects\Autofac\Validation\ValidationAspect.cs:line 31
+   at Core.Utilities.Interceptors.MethodInterception.Intercept(IInvocation invocation) in C:\Users\90533\Desktop\Visual Studio\Project\Core\Utilities\Interceptors\MethodInterception.cs:line 15
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.IProductServiceProxy.Add(Product product)
+   at WebAPI.Controllers.ProductsController.Post(Product product) in C:\Users\90533\Desktop\Visual Studio\Project\WebAPI\Controllers\ProductsController.cs:line 36
+   at lambda_method(Closure , Object , Object[] )
+   at Microsoft.Extensions.Internal.ObjectMethodExecutor.Execute(Object target, Object[] parameters)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.SyncActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+ 2022-27-24 ENES 10 Request finished in 4214.8259ms 500 text/plain  

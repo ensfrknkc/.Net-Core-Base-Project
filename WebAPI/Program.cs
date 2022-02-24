@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Serilog;
 
 namespace WebAPI
 {
@@ -16,7 +17,16 @@ namespace WebAPI
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            ConfigureLogger();
+            try
+            {
+                CreateHostBuilder(args).Build().Run();
+            }
+            catch { }
+            finally
+            {
+                Log.CloseAndFlush();
+            }
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -28,7 +38,15 @@ namespace WebAPI
                 })//AutoFac Container Configuration end
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseStartup<Startup>().UseSerilog();
                 });
+        public static void ConfigureLogger()
+        {
+            Log.Logger = new LoggerConfiguration()
+                .WriteTo.File(@"log.txt",outputTemplate: "{Timestamp:yyyy-mm-dd} {MachineName} {ThreadId} {Message} {Exception:1} {Newline}")
+                .Enrich.WithThreadId()
+                .Enrich.WithMachineName()
+                .CreateLogger();
+        }
     }
 }
